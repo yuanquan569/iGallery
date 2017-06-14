@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">iGallery</string>
+    <string name="app_test_title">标题</string>
+    <string name="gallery_bottom_button_photo">照片</string>
+    <string name="gallery_bottom_button_memory">回忆</string>
+    <string name="gallery_bottom_button_album">相簿</string>
+</resources>
