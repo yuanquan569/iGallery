@@ -1,11 +1,14 @@
 package com.yuan.igallery;
 
+import android.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.yuan.igallery.view.photo.fragment.GalleryPhotoFragment;
 
 public class GalleryMainActivity extends AppCompatActivity {
 
@@ -17,8 +20,6 @@ public class GalleryMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_main);
-        Test.
-new Test().set(100);
         initView();
         setListeners();
     }
@@ -30,6 +31,7 @@ new Test().set(100);
         rb_album = (RadioButton) findViewById(R.id.rb_album);
         tv_title = (TextView) findViewById(R.id.tv_main_title);
         tv_title.setText(getApplicationContext().getString(R.string.gallery_bottom_button_photo));
+        replaceFragment(new GalleryPhotoFragment());
         setTabState();
     }
 
@@ -41,6 +43,7 @@ new Test().set(100);
                     case R.id.rb_photo:
                         tv_title.setText(getApplicationContext().getString(R.string.gallery_bottom_button_photo));
 
+                        replaceFragment(new GalleryPhotoFragment());
                         break;
                     case R.id.rb_memory:
                         tv_title.setText(getApplicationContext().getString(R.string.gallery_bottom_button_memory));
@@ -48,13 +51,16 @@ new Test().set(100);
                         break;
                     case R.id.rb_album:
                         tv_title.setText(getApplicationContext().getString(R.string.gallery_bottom_button_album));
-
                         break;
                 }
                 setTabState();
             }
         });
 
+    }
+
+    private void replaceFragment(Fragment fragment){
+        getFragmentManager().beginTransaction().replace(R.id.sub_content,fragment).commit();
     }
 
     private void setTabState() {
